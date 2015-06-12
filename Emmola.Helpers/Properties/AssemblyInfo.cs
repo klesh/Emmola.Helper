@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Emmola.Helpers")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(".NET Helper functions collection for reducing reinventing and better readable code")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Emmola IT Co.,Ltd.")]
 [assembly: AssemblyProduct("Emmola.Helpers")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © Emmola 2015")]
+[assembly: AssemblyTrademark("Emmola.Helpers")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

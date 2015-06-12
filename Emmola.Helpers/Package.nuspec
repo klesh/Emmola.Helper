@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Emmola.Helpers</id>
+    <version>1.0</version>
+    <authors>Klesh Wong</authors>
+    <owners>Emmola IT Co., LTD.</owners>
+    <licenseUrl>https://github.com/klesh/Emmola.Helper/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/klesh/Emmola.Helper</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET Helper functions collection for reducing reinventing and better readable code</description>
+    <tags>.NET C# Helper Utility</tags>
+  </metadata>
+</package>
