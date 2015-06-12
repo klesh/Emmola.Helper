@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Emmola.Helpers</id>
-    <version>1.0</version>
+    <version>1.0.0.1</version>
     <authors>Klesh Wong</authors>
     <owners>Emmola IT Co., LTD.</owners>
     <licenseUrl>https://github.com/klesh/Emmola.Helper/blob/master/LICENSE</licenseUrl>

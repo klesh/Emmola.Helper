@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emmola.Helpers", "Emmola.Helpers\Emmola.Helpers.csproj", "{85376ECC-D02F-4BC8-B60A-AB5B6E5418E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emmola.Helpers.Tests", "Emmola.Helpers.Tests\Emmola.Helpers.Tests.csproj", "{CD5D98FF-DD68-4726-8D2F-A3BC1DED67D8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E514B0B-F416-416E-85D5-505869F5D03A}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4C31C69F-8FD9-4587-97BA-254D3DF43AEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emmola.Helpers", "src\Emmola.Helpers\Emmola.Helpers.csproj", "{85376ECC-D02F-4BC8-B60A-AB5B6E5418E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emmola.Helpers.Tests", "src\Emmola.Helpers.Tests\Emmola.Helpers.Tests.csproj", "{CD5D98FF-DD68-4726-8D2F-A3BC1DED67D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{85376ECC-D02F-4BC8-B60A-AB5B6E5418E9} = {4C31C69F-8FD9-4587-97BA-254D3DF43AEB}
+		{CD5D98FF-DD68-4726-8D2F-A3BC1DED67D8} = {4C31C69F-8FD9-4587-97BA-254D3DF43AEB}
 	EndGlobalSection
 EndGlobal
