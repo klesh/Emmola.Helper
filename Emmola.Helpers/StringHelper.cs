@@ -37,7 +37,7 @@ namespace Emmola.Helpers
     /// <summary>
     /// Return its SHA1 digest text
     /// </summary>
-    public static string DigestSHA1(string self)
+    public static string DigestSHA1(this string self)
     {
       using (var sha1 = SHA1.Create())
         return sha1.ComputeHash(Encoding.UTF8.GetBytes(self)).ToHexString();
@@ -149,7 +149,6 @@ namespace Emmola.Helpers
     {
       return self.IsValid() ? _textInfo.ToTitleCase(self) : string.Empty;
     }
-
 
 
     /// <summary>

@@ -78,11 +78,20 @@ namespace Emmola.Helpers.Tests
     }
 
     [TestMethod]
-    public void PropertiesTest()
+    public void GetPublicPropertiesTest()
     {
       var properties = typeof(Foo).GetPublicProperties();
       Assert.IsFalse(properties.Any(p => p.Name == "InsideProperty"));
       Assert.IsTrue(properties.Any(p => p.Name == "Foobar"));
+    }
+
+    [TestMethod]
+    public void GetReadWritePropertiesTest()
+    {
+      var properties = typeof(Foo).GetReadWriteProperties();
+      Assert.IsFalse(properties.Any(p => p.Name == "InsideProperty"));
+      Assert.IsTrue(properties.Any(p => p.Name == "Foobar"));
+      Assert.IsFalse(properties.Any(p => p.Name == "ReadOnly"));
     }
 
     [TestMethod]
@@ -118,6 +127,8 @@ namespace Emmola.Helpers.Tests
     public IEnumerable<FooBar> Foobars { get; set; }
 
     private string InsideProperty { get; set; }
+
+    public int ReadOnly { get; protected set; }
   }
 
   [DisplayName("HelloWorld")]
