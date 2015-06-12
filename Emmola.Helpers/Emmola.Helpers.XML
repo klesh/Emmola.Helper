@@ -127,7 +127,7 @@
             <param name="value">Unit timestamp</param>
             <returns>DateTime</returns>
         </member>
-        <member name="M:Emmola.Helpers.DateTimeHelper.LatterOrNow(System.Nullable{System.DateTime})">
+        <member name="M:Emmola.Helpers.DateTimeHelper.LaterOrNow(System.Nullable{System.DateTime})">
             <summary>
             Return itself when is valid and later than DateTime.Now, otherwise return DateTime.Now
             </summary>

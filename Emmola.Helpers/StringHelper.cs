@@ -258,7 +258,7 @@ namespace Emmola.Helpers
     /// </summary>
     public static string[] AllValid(this string[] self)
     {
-      return self.Select(s => s.Trim()).Where(s => s.IsValid()).ToArray();
+      return self.Select(s => s.IsValid() ? s.Trim() : null).Where(s => s.IsValid()).ToArray();
     }
 
     /// <summary>

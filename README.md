@@ -267,3 +267,57 @@ Shortcut of String.Format()
 ```
   "{0} ({1})".FormatMe("Hi", "there")
 ```
+
+## EnumHelper
+Assuming we hav a enum type
+```
+  public enum Progress
+  {
+    [Display(Name = "Processing", Description = "Current stataus: Processing")]
+    Ongoing,
+    [Display(Name = "Finished", Description = "Current stataus: Finished")]
+    Success,
+    Failure
+  }
+```
+
+### Progress.Ongoing.ToReadable()
+Return DisplayAttribute.Name or fallback to literal member name
+```
+      Assert.AreEqual("Failure", Progress.Failure.ToReadable());
+      Assert.AreEqual("Processing", Progress.Ongoing.ToReadable());
+```
+
+### Progress.Success.GetDescription()
+Return DisplayAttribute.Description
+```
+      Assert.AreEqual("Current stataus: Finished", Progress.Success.GetDescription());
+```
+
+## DateTimeHelper
+
+### DateTime.Now.ToFilename()
+Return a formatted string suitable for filename
+```
+      Assert.AreEqual("2015-06-12-113025-000", new DateTime(2015, 6, 12, 11, 30, 25).ToFileName());
+```
+
+### DateTimeHelper.Min(a, b) / DateTimeHelper.Max(a, b)
+Math.Min(a, b) / Max.Max(a, b) for DateTime. Also available for Nullable<DateTime>
+```
+      var now = DateTime.Now;
+      var tommorow = now.AddDays(1);
+
+      Assert.AreEqual(now, DateTimeHelper.Min(now, tommorow));
+      Assert.AreEqual(tommorow, DateTimeHelper.Max(now, tommorow));
+```
+
+### DateTime.Now.ToUnixTimestamp()
+Convert DateTime to Unix timestamp
+
+
+### DateTimeHelper.FromUnixTimestamp(long unixTimeStamp)
+Convert unix timestamp to DateTime
+
+### (DateTime?).LaterOrNow()
+Return DateTime if itself has a valid DateTime and later than now, otherwise return DateTime.Now

@@ -202,7 +202,7 @@ namespace Emmola.Helpers
     /// Return itself when is valid and later than DateTime.Now, otherwise return DateTime.Now
     /// </summary>
     /// <param name="dateTime"></param>
-    public static DateTime LatterOrNow(this DateTime? dateTime)
+    public static DateTime LaterOrNow(this DateTime? dateTime)
     {
       return dateTime == null || dateTime.Value < DateTime.Now ? DateTime.Now : dateTime.Value;
     }
