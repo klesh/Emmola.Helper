@@ -33,7 +33,7 @@
         </member>
         <member name="M:Emmola.Helpers.DateTimeHelper.ToTimeString(System.DateTime)">
             <summary>
-            Return a Date string, set DateTimeHelper.DATE_FORMAT to change output format
+            Return a Date string, set DateTimeHelper.TIME_FORMAT to change output format
             </summary>
         </member>
         <member name="M:Emmola.Helpers.DateTimeHelper.ToDateTimeString(System.DateTime)">
@@ -63,6 +63,13 @@
             <param name="self"></param>
             <returns></returns>
         </member>
+        <member name="M:Emmola.Helpers.DateTimeHelper.ToReadable(System.DateTime,System.Boolean)">
+            <summary>
+            Return a readable timespan to DateTime.Now if not null.
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
         <member name="M:Emmola.Helpers.DateTimeHelper.ToReadable(System.TimeSpan)">
             <summary>
             Return a readable string, positive as before, negitive as after.
@@ -70,6 +77,13 @@
             <param name="self"></param>
         </member>
         <member name="M:Emmola.Helpers.DateTimeHelper.ReadableSpanTo(System.Nullable{System.DateTime},System.DateTime,System.Boolean)">
+            <summary>
+            Return readable TimeSpan, or DateTime format if over a month.
+            </summary>
+            <param name="compare">DateTime to be compared</param>
+            <param name="dateOnly">Show short date format while span over a month</param>
+        </member>
+        <member name="M:Emmola.Helpers.DateTimeHelper.ReadableSpanTo(System.DateTime,System.DateTime,System.Boolean)">
             <summary>
             Return readable TimeSpan, or DateTime format if over a month.
             </summary>

@@ -1,6 +1,17 @@
 ﻿# Introduction
 .NET Helper functions collection for reducing reinventing and better readable code
 
+# QuickStart
+install package from nuget
+```
+PM> Install-Package Emmola.Helpers
+```
+import namespace:
+```
+using Emmola.Helpers;
+```
+off to go!
+
 
 ## TypeHelper
 Assuming we have:
@@ -315,9 +326,139 @@ Math.Min(a, b) / Max.Max(a, b) for DateTime. Also available for Nullable<DateTim
 ### DateTime.Now.ToUnixTimestamp()
 Convert DateTime to Unix timestamp
 
+### DateTime.Now.ToDateString()
+Return a Date string, set DateTimeHelper.DATE_FORMAT to change output format
+
+### DateTime.Now.ToTimeString()
+Return a Date string, set DateTimeHelper.TIME_FORMAT to change output format
+
+### DateTime.Now.ToDateTimeString()
+Return a Date And Time string, set DateTimeHelper.DATETIME_FORMAT to change output format
+
 
 ### DateTimeHelper.FromUnixTimestamp(long unixTimeStamp)
 Convert unix timestamp to DateTime
 
 ### (DateTime?).LaterOrNow()
-Return DateTime if itself has a valid DateTime and later than now, otherwise return DateTime.Now
+Return DateTime if itself has a valid DateTime and later than DateTime.Now, otherwise return DateTime.Now
+
+### new TimeSpan(123).ToReadable()
+Return human readable format, like Just now, 3 minutes ago, Tommorow...
+
+### DateTime.Now.ToReadable()
+Return human readable format relative to DateTime.Now
+```
+      Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
+      var justnow = DateTime.Now.AddSeconds(-1);
+      Assert.AreEqual("Just now", justnow.ToReadable());
+
+      var threeMinAgo = justnow.AddMinutes(-3);
+      Assert.AreEqual("3 minutes ago", threeMinAgo.ToReadable());
+
+      var tommorow = DateTime.Now.AddDays(1);
+      Assert.AreEqual("Tommorow", tommorow.ToReadable());
+
+      var afterTwoHours = DateTime.Now.AddHours(2);
+      Assert.AreEqual("After 2 hours", afterTwoHours.ToReadable());
+
+      var yearAgo = DateTime.Now.AddYears(-1);
+      Assert.AreEqual(yearAgo.ToDateString(), yearAgo.ToReadable(true));
+```
+
+## CollectionHelper
+
+### new T[].Fill(element, start, end)
+Fill an Array with specified element
+```
+      Assert.IsTrue(new int[4].Fill(2).All(i => i == 2));
+      Assert.AreEqual(new int[] { 0, 1, 1, 0 }.Implode(", "), new int[4].Fill(1, 1, 3).Implode(", "));
+```
+
+### new object[]{...}.Implode(separator)
+Shortcut to String.Join(separator, params object[])
+```
+      Assert.AreEqual("1, 2, 3", new int[] { 1, 2, 3 }.Implode(", "));
+```
+
+### new HashSet<T>().AddRang(IEnumerable<T>)
+Same as List<T>.AddRange(IEnumerable<T>)
+
+### ICollection<T>.AddIfNotNull(elementMaybeNull)
+Add element only if it's not null
+
+### new NameValueCollection().ToQueryString()
+Convert a NameValueCollection into QueryString format
+```
+      var nvc = new NameValueCollection() { { "Foo Bar", "Hello world" }, { "Key", "Value" } };
+      Assert.AreEqual("Foo+Bar=Hello+world&Key=Value", nvc.ToQueryString());
+```
+
+### new NameValueCollection().GetNullable<T>(key)
+Try to fetch nullable from NameValueCollection
+
+### new IEnumerable<T>().AnySame()
+Check if any two elements are Equal in collection
+
+### new IEnumerable<T>().SimilarityTo(otherIEnumerableT)
+Calculate similarity to other collection.
+
+
+## NumberHelper
+
+### (1000000m).ToReadable()
+Convert to readable string
+```
+      decimal money = 10.00m;
+      decimal money2 = 10.01m;
+      decimal money3 = 10000000000m;
+      decimal money4 = 10000000000.01m;
+      Assert.AreEqual("10", money.ToReadable());
+      Assert.AreEqual("10.01", money2.ToReadable());
+      Assert.AreEqual("10,000,000,000", money3.ToReadable());
+      Assert.AreEqual("10,000,000,000.01", money4.ToReadable());
+```
+
+
+### (1000000m).ToMoney()
+Convert to money format
+```
+      decimal money = 10m;
+      decimal money2 = 10.01m;
+      decimal money3 = 10000000000m;
+      decimal money4 = 10000000000.01m;
+      Assert.AreEqual("10.00", money.ToMoney());
+      Assert.AreEqual("10.01", money2.ToMoney());
+      Assert.AreEqual("10,000,000,000.00", money3.ToMoney());
+      Assert.AreEqual("10,000,000,000.01", money4.ToMoney());
+```
+
+### ((long)12312312).ToCapacity()
+Convert to capacity format string, like 1B, 1KB, 1MB etc
+
+### (0.12f).ToPercentage()
+Convert to percentage format 
+
+## ObjectHelper
+
+### ObjectHelper.Get(instance, propertyName)
+Dynamically get instance's property value
+
+### ObjectHelper.Set(instance, propertyName, propertyValue)
+Dynamically set instance's property value
+
+### ObjectHelper.GetString(instance, propertyName)
+Dynamically get instance's property value anc convert to string
+
+### ObjectHelper.ToReadable(instance, propertyName)
+Base on instance' property DataTypeAttribute, to call off ToReadable/ToMoney/ToDateTimeString automatically.
+
+### ObjectHelper.ToQueryString(instance)
+Convert an anomynous object to QueryString format
+
+
+### ObjectHelper.ToBinary(instance)
+Convert instance to byte[] using BinaryFormatter
+
+### ObjectHelper.FromBinary<T>(byte[])
+Convert byte[] back to specified T

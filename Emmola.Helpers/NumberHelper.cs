@@ -19,7 +19,7 @@ namespace Emmola.Helpers
     /// </summary>
     public static string ToReadable(this decimal self)
     {
-      return self.ToString("G29");
+      return self.ToString("#,###.##");
     }
 
     /// <summary>
@@ -66,9 +66,9 @@ namespace Emmola.Helpers
     /// <summary>
     /// Return percentage format.
     /// </summary>
-    public static string ToPercentage(float usage)
+    public static string ToPercentage(this float self)
     {
-      return String.Format("{0}%", Math.Round(usage));
+      return String.Format("{0}%", Math.Round(self * 100));
     }
 
     /// <summary>
@@ -84,13 +84,14 @@ namespace Emmola.Helpers
     /// <summary>
     /// Calculate pages base on pagesize
     /// </summary>
+    /// <param name="self"></param>
     /// <param name="pageSize"></param>
-    public static long CalculatePages(this long records, long pageSize)
+    public static long CalculatePages(this long self, long pageSize)
     {
-      var totalPages = records / pageSize; // 取得总页数
-      if (totalPages == 0 && records > 0)
+      var totalPages = self / pageSize; // 取得总页数
+      if (totalPages == 0 && self > 0)
         totalPages = 1;
-      else if (records % pageSize > 0)
+      else if (self % pageSize > 0)
         totalPages += 1;
       return totalPages;
     }

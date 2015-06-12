@@ -18,7 +18,7 @@ namespace Emmola.Helpers
     }
 
     /// <summary>
-    /// Return a Date string, set DateTimeHelper.DATE_FORMAT to change output format
+    /// Return a Date string, set DateTimeHelper.TIME_FORMAT to change output format
     /// </summary>
     public static string ToTimeString(this DateTime self)
     {
@@ -68,6 +68,16 @@ namespace Emmola.Helpers
     }
 
     /// <summary>
+    /// Return a readable timespan to DateTime.Now if not null.
+    /// </summary>
+    /// <param name="self"></param>
+    /// <returns></returns>
+    public static string ToReadable(this DateTime self, bool dateOnly = false)
+    {
+      return self.ReadableSpanTo(DateTime.Now, dateOnly);
+    }
+
+    /// <summary>
     /// Return a readable string, positive as before, negitive as after.
     /// </summary>
     /// <param name="self"></param>
@@ -110,10 +120,20 @@ namespace Emmola.Helpers
       if (self == null)
         return null;
 
-      var span = dateOnly ? compare.Date - self.Value.Date : compare - self.Value;
+      return self.ToReadable(dateOnly);
+    }
+
+    /// <summary>
+    /// Return readable TimeSpan, or DateTime format if over a month.
+    /// </summary>
+    /// <param name="compare">DateTime to be compared</param>
+    /// <param name="dateOnly">Show short date format while span over a month</param>
+    public static string ReadableSpanTo(this DateTime self, DateTime compare, bool dateOnly = false)
+    {
+      var span = dateOnly ? compare.Date - self.Date : compare - self;
 
       if (Math.Abs(span.Days) > 31)
-        return self.Value.ToString(dateOnly ? DATE_FORMAT : DATETIME_FORMAT);
+        return self.ToString(dateOnly ? DATE_FORMAT : DATETIME_FORMAT);
 
       return span.ToReadable();
     }

@@ -174,7 +174,10 @@ namespace Emmola.Helpers
     /// <returns>float type similarity between 0 and 1</returns>
     public static float SimilarityTo<T>(this IEnumerable<T> self, IEnumerable<T> other)
     {
-      return (float)self.Intersect(other).Count() / (float)Math.Max(self.Count(), other.Count());
+      var maxLength = Math.Max(self.Count(), other.Count());
+      if (maxLength == 0)
+        return 1f;
+      return (float)self.Intersect(other).Count() / (float)maxLength;
     }
 
     /// <summary>
