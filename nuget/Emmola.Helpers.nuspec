@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Emmola.Helpers</id>
-    <version>1.0.0.1</version>
+    <version>1.0.0.2</version>
     <authors>Klesh Wong</authors>
     <owners>Emmola IT Co., LTD.</owners>
     <licenseUrl>https://github.com/klesh/Emmola.Helper/blob/master/LICENSE</licenseUrl>
@@ -12,4 +12,7 @@
     <description>.NET Helper functions collection for reducing reinventing and better readable code</description>
     <tags>.NET C# Helper Utility</tags>
   </metadata>
+  <files>
+    <file src="..\src\Emmola.Helpers\bin\Release\Emmola.Helpers.dll" target="lib" />
+  </files>
 </package>

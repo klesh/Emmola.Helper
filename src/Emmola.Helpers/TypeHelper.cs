@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -60,6 +61,16 @@ namespace Emmola.Helpers
     public static IEnumerable<Type> FindSubTypes(this Type self, bool concreateOnly = true, string nameSpace = null)
     {
       return self.FindSubTypes(AppDomain.CurrentDomain.GetAssemblies(), concreateOnly, nameSpace);
+    }
+
+    /// <summary>
+    /// Return all SubTypes in specified Assembly
+    /// </summary>
+    /// <param name="concreateOnly">Concreate type only</param>
+    /// <param name="nameSpace">Search with in specifed namespace</param>
+    public static IEnumerable<Type> FindSubTypesIn(this Type self, Assembly assembly, bool concreateOnly = true, string nameSpace = null)
+    {
+      return self.FindSubTypes(new Assembly[] { assembly }, concreateOnly, nameSpace);
     }
 
     /// <summary>
@@ -223,6 +234,18 @@ namespace Emmola.Helpers
       if (displayAttr != null)
         return displayAttr.Description;
       return null;
+    }
+
+    /// <summary>
+    /// Return resource as text
+    /// </summary>
+    /// <param name="name">resource name (DEFAULT_NAME_SPACE.FOLDERS.REOUSRCE_FILENAME)</param>
+    /// <returns>string</returns>
+    public static string GetResourceText(this Assembly self, string name)
+    {
+      using (var stream = self.GetManifestResourceStream(name))
+      using (var reader = new StreamReader(stream))
+        return reader.ReadToEnd();
     }
   }
 }
