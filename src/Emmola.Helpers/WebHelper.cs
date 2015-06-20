@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -10,6 +11,14 @@ namespace Emmola.Helpers
 {
   public static class WebHelper
   {
+    /// <summary>
+    /// Combine URLs
+    /// </summary>
+    public static string CombineUrl(params string[] segments)
+    {
+      return string.Join("/", segments.Select(s => s.Trim('/')).Where(s => s.IsValid()));
+    }
+
     /// <summary>
     /// Return a HttpClient with Host/Headers setup.
     /// </summary>

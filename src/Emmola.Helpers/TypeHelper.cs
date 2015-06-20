@@ -19,7 +19,7 @@ namespace Emmola.Helpers
     /// </summary>
     public static bool IsSimpleType(this Type self)
     {
-      return self.IsValueType || self.IsEnum || self == _stringType || self == _decimalType;
+      return self.IsValueType || self.IsEnum || self == _stringType;
     }
 
     /// <summary>
