@@ -31,7 +31,10 @@ namespace Emmola.Helpers.Classes
     /// <returns></returns>
     public int CompareTo(Ordered<T> other)
     {
-      return this.Order.CompareTo(other.Order);
+      var eq = this.Order.CompareTo(other.Order);
+      if (eq == 0)
+        return this.Value.GetHashCode().CompareTo(other.Value.GetHashCode());
+      return eq;
     }
   }
 }

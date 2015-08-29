@@ -60,7 +60,7 @@ namespace Emmola.Helpers
           }
         }
 
-        if (retrievedType != null) //Cool, we found something
+        if (retrievedType != null && retrievedObject != null) //Cool, we found something
         {
           string result = String.Empty;
           if (toFormat == String.Empty) //no format info

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -79,6 +80,21 @@ namespace Emmola.Helpers
       var text = await streamReader.ReadToEndAsync();
       stream.Close();
       return text;
+    }
+
+    /// <summary>
+    /// Get client ip address from header collection
+    /// </summary>
+    /// <param name="headers"></param>
+    /// <returns>Client IP</returns>
+    public static string GetClientIP(NameValueCollection headers)
+    {
+      if (headers["HTTP_X_FORWARDED_FOR"].IsValid())
+        return Regex.Split(headers["HTTP_X_FORWARDED_FOR"], @"\s*,\s*").Last();
+      else if (headers["HTTP_CLIENT_IP"].IsValid())
+        return headers["HTTP_CLIENT_IP"];
+      else
+        return headers["REMOTE_ADDR"];
     }
   }
 }

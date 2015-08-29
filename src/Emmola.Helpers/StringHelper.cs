@@ -127,7 +127,7 @@ namespace Emmola.Helpers
       return !string.IsNullOrWhiteSpace(self);
     }
 
-    public static bool NotValid(this string self)
+    public static bool Invalid(this string self)
     {
       return string.IsNullOrWhiteSpace(self);
     }
@@ -272,11 +272,37 @@ namespace Emmola.Helpers
     }
 
     /// <summary>
+    /// Shortcut of NOT String.Equals InvariantCultureIgnoreCase
+    /// </summary>
+    public static bool NotIcEquals(this string self, string other)
+    {
+      return !self.IcEquals(other);
+    }
+
+    /// <summary>
     /// Shortcut of String.Format
     /// </summary>
     public static string FormatMe(this string self, params object[] args)
     {
-      return string.Format(self, args);
+      return args.Any() ? string.Format(self, args) : self;
+    }
+
+    /// <summary>
+    /// Shortcut of String.Format
+    /// </summary>
+    public static string FormatMe(this string self, IFormatProvider formatProvider, params object[] args)
+    {
+      return string.Format(formatProvider, self, args);
+    }
+
+    /// <summary>
+    /// Shortcut to string.Split
+    /// </summary>
+    /// <param name="separator">separator string</param>
+    /// <returns></returns>
+    public static string[] Explode(this string self, string separator)
+    {
+      return self.Split(new string[] { separator }, StringSplitOptions.None);
     }
 
     /// <summary>
@@ -285,6 +311,15 @@ namespace Emmola.Helpers
     public static string ToHtmlString(this string self)
     {
       return self.IsValid() ? WebUtility.HtmlEncode(self).Replace("  ", " &nbsp;").Replace(Environment.NewLine, "<br />") : null; 
+    }
+
+    /// <summary>
+    /// Convert to UTF8 byte array
+    /// </summary>
+    /// <returns>byte[]</returns>
+    public static byte[] ToUTF8Bytes(this string self)
+    {
+      return Encoding.UTF8.GetBytes(self);
     }
   }
 }

@@ -194,7 +194,7 @@ Convert byte[] to hex format string
       Assert.AreEqual("080C1E", new byte[] { 8, 12, 30 }.ToHexString());
 ```
 
-### IsEmpty()/IsNull()/IsValid
+### IsEmpty()/IsNull()/IsValid()/Invalid()
 Check if a String is empty/null/valid
 ```
       string nullString = null;
@@ -278,6 +278,9 @@ Shortcut of String.Format()
 ```
   "{0} ({1})".FormatMe("Hi", "there")
 ```
+
+## "abc".ToUTF8Bytes()
+Convert to UTF8 byte array;
 
 ## EnumHelper
 Assuming we hav a enum type
@@ -462,3 +465,95 @@ Convert instance to byte[] using BinaryFormatter
 
 ### ObjectHelper.FromBinary<T>(byte[])
 Convert byte[] back to specified T
+
+
+## SystemHelper
+
+### SystemHelper.IsMono
+Check if running under Mono
+
+### SystemHelper.IsWindows
+Check if running under Windows
+
+### SystemHelper.IsUnix
+Check if running under *nix System(Unix/Linux/Mac)
+
+### SystemHelper.IsMac
+Check if running under Mac
+
+### SystemHelper.IsLinux
+Check if runfing under Linux
+
+### SystemHelper.IsUnknown
+Check if running under Unknon OS
+
+### SystemHelper.Is32bit
+Check if running under 32bit system
+
+### SystemHelper.Is64bit
+Check if running under 64bit system
+
+### SystemHelper.Is32BitProcess
+Check pointer length
+
+### SystemHelper.Is64BitProcess
+Check pointer length
+
+### SystemHelper.Run(string command)
+Run a shell command and return output result
+
+### SystemHelper.Run(string command, string args)
+Run a shell command with args and return output result
+
+### SystemHelper.Os
+Operating System fullname
+
+### SystemHelper.GetDirectorySize(path)
+Returun total size of its all sub files/folders in bytes
+
+
+## Classes.SimplePerfCounter
+Simple performance counter
+
+### new SimplePerfCounter().OsFullname
+Same as SystemHelper.Os
+
+### new SimplePerfCounter().CpuCores
+Return cpu cores
+
+### new SimplePerfCounter().MemoryTotal
+Return total physical memory in bytes
+
+### new SimplePerfCounter().HarddiskTotal
+Return total partition space of current AppDomain BaseDirectory in bytes.
+
+### new SimplePerfCounter().GetCpuUsage()
+Return average Cpu Usage during two calls
+
+### new SimplePerfCounter().GetMemoryUsage()
+Return average Memory Usage during two calls under Windows
+Return current Memory Usage under *nix OS
+
+### new SimplePerfCounter().GetHarddiskUsage()
+Return partition usage of current AppDomain BaseDirectory
+
+
+## WebHelper
+
+### WebHelper.CombineUrl(params string[])
+Similar to Path.Combine
+
+### WebHelper.GetClientIP(NameValueCollection headers)
+Extract client ip from header collection
+
+### WebHelper.GetHttpClient(string host, string format)
+Return a new HttpClient instance accept specified format
+
+### WebHelper.GetJsonHttpClient(string host)
+Return a new HttpClient instance accept JSON format
+  
+### WebHelper.GetXmlHttpClient(string host)
+Return a new HttpClient instance accept XML format
+
+### new HttpContent().ReadAsHtmlAsync()
+Read html content with charset META TAG info rather than header info

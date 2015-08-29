@@ -84,6 +84,16 @@ namespace Emmola.Helpers
     }
 
     /// <summary>
+    /// Return all SubTypes in Type's assembly
+    /// </summary>
+    /// <param name="concreateOnly">Concreate type only</param>
+    /// <param name="nameSpace">Search with in specifed namespace</param>
+    public static IEnumerable<Type> FindSubTypesInIt(this Type self, bool concreateOnly = true, string nameSpace = null)
+    {
+      return self.FindSubTypes(new Assembly[] { self.Assembly }, concreateOnly, nameSpace);
+    }
+
+    /// <summary>
     /// Check if is IEnumerable, including Array, GenericIEnumerable but NOT string!
     /// </summary>
     public static bool IsEnumerable(this Type self)
@@ -189,6 +199,14 @@ namespace Emmola.Helpers
     public static IEnumerable<PropertyInfo> GetReadWriteProperties(this Type type)
     {
       return type.GetPublicProperties().Where(p => p.CanRead && p.CanWrite);
+    }
+
+    /// <summary>
+    /// Return all public Properties 
+    /// </summary>
+    public static IEnumerable<PropertyInfo> GetReadProperties(this Type type)
+    {
+      return type.GetPublicProperties().Where(p => p.CanRead);
     }
 
     /// <summary>
